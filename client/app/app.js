@@ -11,6 +11,10 @@ angular.module('MP', [
       controller: 'AuthController'
     })
     .when('/signup', {
+      templateUrl: 'app/landingPage/index.html',
+      controller: 'linkController'
+    })
+    .when('/index', {
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
@@ -27,6 +31,7 @@ angular.module('MP', [
   // then add it to the header so the server can validate the request
   var attach = {
     request: function (object) {
+
       var jwt = $window.localStorage.getItem('com.shortly');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
