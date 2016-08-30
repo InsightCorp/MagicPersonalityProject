@@ -1,62 +1,39 @@
-var mongoose = require('mongoose'),
-    bcrypt   = require('bcrypt-nodejs'),
-    Q        = require('q'),
-    SALT_WORK_FACTOR  = 10;
+var db = require('../db');
+var PersonalityInsightsV2 = require('watson-developer-cloud/personality-insights/v2');
 
+var Wat = module.exports;
 
-var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
+// npm install watson-developer-cloud
+ 
+var personality_insights = new PersonalityInsightsV2({
+  //you get this for your bluemix app
+  username: '',
+  password: ''
 
-  password: {
-    type: String,
-    required: true
-  },
-  salt: String
 });
 
-UserSchema.methods.comparePasswords = function (candidatePassword) {
-  var defer = Q.defer();
-  var savedPassword = this.password;
-  bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-    if (err) {
-      defer.reject(err);
-    } else {
-      defer.resolve(isMatch);
-    }
+// use callWat(data) to get data from watson | TODO: add a callback or a promise structure
+Wat.callWat = function(bigData){
+
+  var data = bigData || "-_-" // <-- big data goes here
+  // make a call to watson
+  personality_insights.profile({
+    text: `${data}`,
+    language: 'en' },
+    function (err, response) {
+      if (err)
+        console.log('error:', err);
+      else
+        console.log(JSON.stringify(response, null, 2));
+        // TODO:
+        // Store info in database
+        // call callback or return a promise
   });
-  return defer.promise;
-};
 
-UserSchema.pre('save', function (next) {
-  var user = this;
+}
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) {
-    return next();
-  }
 
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if (err) {
-      return next(err);
-    }
 
-    // hash the password along with our new salt
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
 
-      // override the cleartext password with the hashed one
-      user.password = hash;
-      user.salt = salt;
-      next();
-    });
-  });
-});
 
-module.exports = mongoose.model('users', UserSchema);
+
