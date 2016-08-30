@@ -10,12 +10,16 @@ angular.module('MP', [
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
+    .when('/index', {
+      templateUrl: 'app/landingPage/index.html',
+      controller: 'linkController'
+    })
     .when('/signup', {
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
     // Your code here
-
+    
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
@@ -27,6 +31,7 @@ angular.module('MP', [
   // then add it to the header so the server can validate the request
   var attach = {
     request: function (object) {
+
       var jwt = $window.localStorage.getItem('com.shortly');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
