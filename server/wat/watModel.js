@@ -5,8 +5,8 @@ var PersonalityInsightsV2 = require('watson-developer-cloud/personality-insights
 
 var personality_insights = new PersonalityInsightsV2({
   //you get this for your bluemix app
-  username: 'xxxxxxxxxxxx',
-  password: 'xxxxxxxxxxxx'
+  username: 'xxxxxxxxxxxxx',
+  password: 'xxxxxxxxxxxxx'
 });
 
 // to initiate the call to the server do a post request 
@@ -17,33 +17,47 @@ var personality_insights = new PersonalityInsightsV2({
 var Wat = module.exports;
 
 // use callWat(data) to get data from watson 
-Wat.callWat = function(bigData) {
+Wat.callWat = function(bigData, screen_name) {
+  // check to see if data alreay exists for this user...
+  return db.collection('watsonData').findOne({screen_name:screen_name})
+    .then(function(response){
+      if (response){//user info exists
+        console.log('response in watModel: ',response);
+        return response.wat_data;
+      }
+      else{
+        return new Promise(function(resolve, reject) {
 
-  return new Promise(function(resolve, reject) {
+          var data = bigData || "-_-" // <-- big data goes here
 
-    var data = bigData || "-_-" // <-- big data goes here
+          // make a call to watson
+          // console.log('data in watModel: ',data);
+          personality_insights.profile({
+              text: `${data}`,
+              language: 'en'
+            },
+            function(err, response) {
+              if (err) {
+                console.log('error:', err);
+                reject(err) 
+              } else {
+                // console.log(JSON.stringify(response, null, 2));
+                // TODO:
+                // Store info in database
+                ///how to make a data base call here???
+                var watObj = watAnalyze(JSON.stringify(response));
+                resolve(watObj)
 
-    // make a call to watson
-    // console.log('data in watModel: ',data);
-    personality_insights.profile({
-        text: `${data}`,
-        language: 'en'
-      },
-      function(err, response) {
-        if (err) {
-          console.log('error:', err);
-          reject(err) 
-        } else {
-          // console.log(JSON.stringify(response, null, 2));
-          // TODO:
-          // Store info in database
-          var watObj = watAnalyze(JSON.stringify(response));
-          resolve(watObj)
+              }
+            });
 
-        }
-      });
+        })
 
-  })
+      }
+
+    })
+
+
 };
 
 // make a fake call to watson
@@ -56,6 +70,18 @@ Wat.callWatTest = function() {
     resolve(data2);
   });
 };
+
+
+Wat.saveDb = function(watResponse, screen_name) {
+
+  var attrs={screen_name:screen_name , wat_data:watResponse};
+  return db.collection('watsonData').insert(attrs)
+    .then(function(resp){
+
+      return watResponse;
+    });
+};
+
 
 // this function should be somewhere else //> 
 function watAnalyze(data) {

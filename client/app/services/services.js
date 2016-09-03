@@ -131,9 +131,9 @@ angular.module('MP.services', [])
     })
   };
 
-  var twitToWatson = function (userTimeline) {
+  var twitToWatson = function (userTimeline, screen_name) {
     // console.log('I am in twitToWatson: ',userTimeline);
-    return Wat.getWatsonData({data: userTimeline})
+    return Wat.getWatsonData({data: userTimeline, screen_name: screen_name})
     // return Wat.getWatsonDataTest()
     .then(function (watData) {
       console.log('resp in twitToWatson:', watData)
