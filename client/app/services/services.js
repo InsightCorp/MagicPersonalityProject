@@ -42,6 +42,7 @@ angular.module('MP.services', [])
       method: 'GET',
       url:'api/wat/watsonTest'
     }).then((resp) => {
+      console.log('resp in getWatsonDataTest:', resp);
         watData.data = resp.data;
         return resp.data;
     })

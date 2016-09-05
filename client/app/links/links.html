@@ -1,5 +1,8 @@
 <div id='container'>
   <!-- Your html here -->
+	<div class="col-12">
+		<h1 class= 'appname'>Magic Personality Insight</h1>
+	</div>
   	<div class='col-sm-12 clearfix'>
   		<button class= 'btn btn-primary btn-lg pull-right' ng-click="logout()">Logout</button>
   	</div>
@@ -8,10 +11,10 @@
 	  	<p>{{descPara}}</p>
   	</div>
   	 <canvas id="radar" class="chart chart-radar"
-  	  chart-data="data" chart-options="options" chart-labels="labels">
+  	  chart-data="data" colours="colours" chart-options="options" chart-labels="labels">
 	</canvas> 
   	<div class='col-sm-6'>
-	  	<h3>Likes</h3>
+	  	<h3>Needs/Loves</h3>
 		<ul>
 			<li ng-repeat="like in likes" > 
 				<p>{{like}}</p>
@@ -19,7 +22,7 @@
 		</ul>
 	</div>
 	<div class='col-sm-6'>
-	  	<h3>Dislikes</h3>
+	  	<h3>Doesn't need</h3>
 		<ul>
 			<li ng-repeat="dislike in dislikes" > 
 				<p>{{dislike}}</p>
