@@ -118,7 +118,7 @@ User.timeLine = function () {
         function(error, data, response) {
             if (error) {
                 console.log("error in User.timeLine in userModel : ",error);
-                reject(err);
+                reject(error);
             } else {
                 // console.log("data in User.timeLine in userModel: ",data);
                 resolve(data);

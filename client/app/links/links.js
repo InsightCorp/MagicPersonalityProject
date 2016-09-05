@@ -1,4 +1,4 @@
-angular.module('MP.links', [])
+angular.module('MP.links', ['chart.js'])
 
 .controller('LinksController', function ($scope, $location, $sce, YouTube, Wat) {
   $scope.data = {};
@@ -16,6 +16,10 @@ angular.module('MP.links', [])
     'Emotional range'   : 'Blues, Jazz, Classical, folk'
   }
 
+  $scope.labels =["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "Emotional range"];
+
+  $scope.data = [[]];
+
   $scope.logout = function (){
     // TODO: the code below seems like a hack, try to implement this in a better way
     var signInUrl = location.protocol + '//' + "localhost"  + 
@@ -30,7 +34,12 @@ angular.module('MP.links', [])
     var big5 = watData.allTraits[2];
     var maxPercent = 0;
     var saveId;
+
+
+
     for (var i = 0; i < big5.length; i++) {
+      $scope.data[0].push(Number(Number(big5[i][1]).toFixed(2))*10);
+      console.log('$scope.data[0]: ', $scope.data[0])
       if (big5[i][1] > maxPercent){
           maxPercent = big5[i][1];
           saveId = i;
