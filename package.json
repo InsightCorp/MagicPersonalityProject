@@ -5,6 +5,10 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+  "start": "gulp",
+  "test": "NODE_ENV=test ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js"
+  },
   "devDependencies": {
     "browser-sync": "^1.5.7",
     "clone-stats": "0.0.1",
