@@ -6,7 +6,7 @@ var Youtube = module.exports
 var youTube = new YouTube();
 
 //Add your you tube key here
-youTube.setKey('xxxxxxxxxxxx');
+youTube.setKey('AIzaSyA8861VjFYgXkieX9m5VvnWAOWj2rAqly0');
 
 Youtube.getVideos = function (query, numResults) {
     return new Promise(function(resolve, reject) {

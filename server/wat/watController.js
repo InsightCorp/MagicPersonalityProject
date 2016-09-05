@@ -9,9 +9,9 @@ module.exports = {
         // res.send(watResponse);
         return watResponse;
       })
-      .then(function(watResponse){ // save this in database
-        return Wat.saveDb(watResponse, req.body.screen_name);
-      })
+      // .then(function(watResponse){ // save this in database
+      //   return Wat.saveDb(watResponse, req.body.screen_name);
+      // })
       .then(function(watResponse){
         res.send(watResponse);
       })

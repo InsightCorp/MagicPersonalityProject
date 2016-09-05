@@ -51,15 +51,15 @@ module.exports = {
         // res.send(accessToken);
         return accessToken
       })
-      .then(function(accessToken){
-        this.userAccessToken = accessToken;
-        return User.verifyCredentials();
-      })
-      .then(function(user){
-        return User.createSession(user.id, user.screen_name);
-      })
+      // .then(function(accessToken){
+      //   this.userAccessToken = accessToken;
+      //   return User.verifyCredentials();
+      // })
+      // .then(function(user){
+      //   return User.createSession(user.id, user.screen_name);
+      // })
       .then(function(session){
-        res.cookie('sessionId', session.sessionId);
+        //res.cookie('sessionId', session.sessionId);
         res.send(session);
       })
       .catch(function (error) {
