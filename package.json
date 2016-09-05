@@ -2,12 +2,12 @@
   "name": "MP",
   "version": "0.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "author": "",
   "license": "ISC",
   "scripts": {
   "build": "gulp",
-  "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
+  "start": "./node_modules/.bin/nodemon --ignore node_modules index.js",
   "test": "NODE_ENV=test ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js"
   },
   "devDependencies": {
