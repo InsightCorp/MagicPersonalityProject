@@ -8,5 +8,3 @@ module.exports = {
     consumerSecret: 'cxA0TcQi2ZBDJgx13ziBKJpSaB4AybBLQMspT5gJxN9Ny2Hokn',
     callback: 'http://192.168.0.19:3000/#/loggingin'
 };
-
-
