@@ -4,7 +4,7 @@
 // This callback URL should match the call URL entered in the twitter app.
 
 module.exports = {
-    consumerKey: 'xxxxxxxxxxxxx',
-    consumerSecret: 'xxxxxxxxxxxxxxxxxxx',
-    callback: 'http://xxxxxxxxxxxxx/#/loggingin'
+    consumerKey: 'iqCNgOKWfsUNp3qP8DBoaYLIx',
+    consumerSecret: 'cxA0TcQi2ZBDJgx13ziBKJpSaB4AybBLQMspT5gJxN9Ny2Hokn',
+    callback: 'http://192.168.0.19:3000/#/loggingin'
 };
