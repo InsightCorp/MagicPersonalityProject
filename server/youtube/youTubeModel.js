@@ -1,12 +1,13 @@
 var db = require('../db');
-var bcrypt = require('bcrypt-nodejs');
 var YouTube = require('youtube-node');
 var Youtube = module.exports
 
 var youTube = new YouTube();
 
 //Add your you tube key here
-youTube.setKey('xxxxxxxxxxx');
+
+youTube.setKey('xxxxxxxxxxxxxxxxx');
+
 
 Youtube.getVideos = function (query, numResults) {
     return new Promise(function(resolve, reject) {

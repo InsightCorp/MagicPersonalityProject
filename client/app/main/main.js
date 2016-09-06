@@ -1,6 +1,6 @@
-angular.module('MP.links', ['chart.js'])
+angular.module('MP.main', ['chart.js'])
 
-.controller('LinksController', function ($scope, $location, $sce, YouTube, Wat) {
+.controller('MainController', function ($scope, $location, $sce, YouTube, Wat) {
   $scope.data = {};
   $scope.youTubeurls =[];
   $scope.descPara = '';

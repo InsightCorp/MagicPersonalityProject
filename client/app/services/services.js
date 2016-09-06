@@ -92,15 +92,6 @@ angular.module('MP.services', [])
     });
   };
 
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('com.shortly');
-  };
-
-  var signout = function () {
-    $window.localStorage.removeItem('com.shortly');
-    $location.path('/signin');
-  };
-
   var getAccessToken = function (data) {
     console.log('getAccessToken data: ',data);
     return $http({
@@ -134,8 +125,8 @@ angular.module('MP.services', [])
 
   var twitToWatson = function (userTimeline, screen_name) {
     // console.log('I am in twitToWatson: ',userTimeline);
-    return Wat.getWatsonData({data: userTimeline, screen_name: screen_name})
-    // return Wat.getWatsonDataTest()
+    // return Wat.getWatsonData({data: userTimeline, screen_name: screen_name})
+    return Wat.getWatsonDataTest()
     .then(function (watData) {
       console.log('resp in twitToWatson:', watData)
       return watData;
@@ -148,8 +139,6 @@ angular.module('MP.services', [])
 
   return {
     signin: signin,
-    isAuth: isAuth,
-    signout: signout,
     getAccessToken: getAccessToken,
     getUserTimeline: getUserTimeline,
     twitToWatson: twitToWatson

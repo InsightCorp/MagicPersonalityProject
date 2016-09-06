@@ -7,5 +7,4 @@ module.exports = function (app) {
   app.get('/request-token', userController.signin);
   app.get('/timeline', userController.getUserTimeline);
   app.post('/access-token', userController.getAccessToken);
-  app.get('/signedin', userController.checkAuth);
 };

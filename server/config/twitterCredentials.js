@@ -3,8 +3,15 @@
 // twitter, twitter redirects back to the app at the callback URL.
 // This callback URL should match the call URL entered in the twitter app.
 
+// module.exports = {
+//     consumerKey: 'iqCNgOKWfsUNp3qP8DBoaYLIx',
+//     consumerSecret: 'cxA0TcQi2ZBDJgx13ziBKJpSaB4AybBLQMspT5gJxN9Ny2Hokn',
+//     callback: 'http://192.168.0.19:3000/#/loggingin'
+// };
+
+
 module.exports = {
     consumerKey: 'xxxxxxxxxxxxx',
-    consumerSecret: 'xxxxxxxxxxxxxxxxxxx',
-    callback: 'http://xxxxxxxxxxxxx/#/loggingin'
+    consumerSecret: 'xxxxxxxxxxxxxxxx',
+    callback: 'xxxxxxxxxxxxxxxxxx'
 };

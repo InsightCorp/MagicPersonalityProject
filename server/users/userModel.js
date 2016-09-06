@@ -1,5 +1,4 @@
 var db = require('../db');
-var bcrypt = require('bcrypt-nodejs');
 var Twitter = require("node-twitter-api");
 var twitterCredentials = require('../config/twitterCredentials');
 var _requestToken;
@@ -15,18 +14,6 @@ var twitter = new Twitter({
 });
 
 
-User.findByUsername = function (username) {
-
-  return db.collection('users').findOne({ username: username })
-    .then(translateId)
-  }
-
-User.findById = function (id) {
-
-  return db.collection('users').find({ _id: db.ObjectId(id) })
-    .then(translateId)
-  }
-
 User.createSession = function (userId, screenName) {
 
   var newSession = {sessionId: _accessToken,
@@ -38,37 +25,6 @@ User.createSession = function (userId, screenName) {
       return newSession;
     });
   };
-
-User.comparePassword = function (passwordHashFromDatabase, attemptedPassword) {
-
-  return new Promise(function (resolve, reject) {
-
-    bcrypt.compare(attemptedPassword, passwordHashFromDatabase, function(err, res) {
-      if (err) reject(err)
-      else     resolve(res)
-    });
-  })
-};
-
-function hashPassword (password) {
-
-  return new Promise(function (resolve, reject) {
-
-    bcrypt.hash(password, null, null, function(err, hash) {
-      if (err) reject(err)
-      else     resolve(hash)
-    });
-  })
-};
-
-
-function translateId (user) {
-  if ( user ) {
-    user.id = user._id
-    delete user._id
-  }
-  return user
-}
 
 User.requestToken = function () {
   return new Promise(function (resolve, reject) {

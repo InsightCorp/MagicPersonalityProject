@@ -6,8 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-  "postinstall": "bower install",
-  "start": "./node_modules/.bin/nodemon --ignore node_modules index.js"  
+    "postinstall": "bower install",
+    "start": "./node_modules/.bin/nodemon --ignore node_modules index.js"
   },
   "devDependencies": {
     "browser-sync": "^1.5.7",
@@ -18,14 +18,15 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
+    "bower": "^1.7.9",
     "express": "^4.4.5",
-    "jwt-simple": "^0.2.0",
     "gulp": "^3.8.5",
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.6.3",
     "gulp-nodemon": "^1.0.4",
     "gulp-shell": "^0.2.7",
-	  "mongodb": "^2.2.9",
+    "jwt-simple": "^0.2.0",
+    "mongodb": "^2.2.9",
     "morgan": "^1.1.1",
     "node-twitter-api": "^1.7.4",
     "passport": "^0.2.0",

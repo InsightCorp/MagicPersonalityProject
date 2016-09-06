@@ -27,7 +27,7 @@ angular.module('MP.loadingPage', [])
             })
             .then(function(watData){
 
-                 $location.path('/links');
+                 $location.path('/main');
             })
     		.catch(function(error){
     			console.log('error in loadingPageController: ',error);
