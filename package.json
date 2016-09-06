@@ -6,9 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-  "build": "gulp",
-  "start": "./node_modules/.bin/nodemon --ignore node_modules index.js",
-  "test": "NODE_ENV=test ./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js"
+  "postinstall": "bower install",
+  "start": "./node_modules/.bin/nodemon --ignore node_modules index.js"  
   },
   "devDependencies": {
     "browser-sync": "^1.5.7",
